@@ -71,7 +71,9 @@ export default defineConfig(({ mode }) => {
     ],
     css: {
       preprocessorOptions: {
-        less: {},
+        less: {
+          javascriptEnabled: true,
+        },
       },
     },
     optimizeDeps: {
