@@ -1,3 +1,6 @@
+/* 引入animate.css动画库 */
+@import url("animate.css/animate.min.css");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
