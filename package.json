@@ -19,6 +19,7 @@
     "async-validator": "^4.2.5",
     "axios": "^1.2.2",
     "pinia": "^2.0.28",
+    "pinia-plugin-persistedstate": "^3.2.0",
     "vant": "^4.0.10",
     "vue": "^3.2.45",
     "vue-dompurify-html": "^3.1.2",
