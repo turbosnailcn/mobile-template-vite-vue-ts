@@ -26,6 +26,9 @@ dependencies:
   pinia:
     specifier: ^2.0.28
     version: registry.npmmirror.com/pinia@2.0.28(typescript@4.9.4)(vue@3.2.45)
+  pinia-plugin-persistedstate:
+    specifier: ^3.2.0
+    version: 3.2.1(pinia@2.0.28)
   vant:
     specifier: ^4.0.10
     version: 4.6.0(vue@3.2.45)
@@ -60,7 +63,7 @@ devDependencies:
     version: registry.npmmirror.com/@vitejs/plugin-vue@3.2.0(vite@3.2.5)(vue@3.2.45)
   autoprefixer:
     specifier: ^10.4.13
-    version: 10.4.14(postcss@8.4.21)
+    version: 10.4.14(postcss@8.4.35)
   cz-conventional-changelog-zh:
     specifier: ^0.0.2
     version: 0.0.2
@@ -86,8 +89,8 @@ devDependencies:
     specifier: ^13.2.2
     version: 13.2.3
   postcss:
-    specifier: ^8.4.21
-    version: 8.4.21
+    specifier: ^8.4.35
+    version: 8.4.35
   prettier:
     specifier: ^2.6.2
     version: registry.npmmirror.com/prettier@2.7.1
@@ -111,7 +114,7 @@ devDependencies:
     version: 0.24.1(vue@3.2.45)
   vitawind:
     specifier: ^2.2.4
-    version: registry.npmmirror.com/vitawind@2.2.4(autoprefixer@10.4.14)(postcss@8.4.21)(tailwindcss@3.3.2)
+    version: registry.npmmirror.com/vitawind@2.2.4(autoprefixer@10.4.14)(postcss@8.4.35)(tailwindcss@3.3.2)
   vite:
     specifier: ^3.2.5
     version: registry.npmmirror.com/vite@3.2.5(@types/node@16.11.42)(less@4.1.3)
@@ -811,7 +814,7 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /autoprefixer@10.4.14(postcss@8.4.21):
+  /autoprefixer@10.4.14(postcss@8.4.35):
     resolution: {integrity: sha512-FQzyfOsTlwVzjHxKEqRIAdJx9niO6VCBCoEwax/VLSoQF29ggECcPuBqUMZ+u8jCZOPSy8b8/8KnuFbp0SaFZQ==}
     engines: {node: ^10 || ^12 || >=14}
     hasBin: true
@@ -823,7 +826,7 @@ packages:
       fraction.js: 4.2.0
       normalize-range: 0.1.2
       picocolors: 1.0.0
-      postcss: 8.4.21
+      postcss: 8.4.35
       postcss-value-parser: 4.2.0
     dev: true
 
@@ -1181,6 +1184,7 @@ packages:
 
   /debug@3.2.7:
     resolution: {integrity: sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ==}
+    requiresBuild: true
     peerDependencies:
       supports-color: '*'
     peerDependenciesMeta:
@@ -2597,14 +2601,8 @@ packages:
       thenify-all: 1.6.0
     dev: true
 
-  /nanoid@3.3.4:
-    resolution: {integrity: sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==}
-    engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
-    hasBin: true
-    dev: true
-
-  /nanoid@3.3.6:
-    resolution: {integrity: sha512-BGcqMMJuToF7i1rt+2PWSNVnWIkGCU78jBG3RxO/bZlnZPK2Cmi2QaffxGO/2RvWi9sL+FAiRiXMgsyxQ1DIDA==}
+  /nanoid@3.3.7:
+    resolution: {integrity: sha512-eSRppjcPIatRIMC1U6UngP8XFcz8MQWGQdt1MTBQ7NaAmvXDfvNxbvWV3x2y6CdEUciCSsDHDQZbhYaB8QEo2g==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
@@ -2856,8 +2854,17 @@ packages:
   /pify@4.0.1:
     resolution: {integrity: sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==}
     engines: {node: '>=6'}
+    requiresBuild: true
     dev: true
     optional: true
+
+  /pinia-plugin-persistedstate@3.2.1(pinia@2.0.28):
+    resolution: {integrity: sha512-MK++8LRUsGF7r45PjBFES82ISnPzyO6IZx3CH5vyPseFLZCk1g2kgx6l/nW8pEBKxxd4do0P6bJw+mUSZIEZUQ==}
+    peerDependencies:
+      pinia: ^2.0.0
+    dependencies:
+      pinia: registry.npmmirror.com/pinia@2.0.28(typescript@4.9.4)(vue@3.2.45)
+    dev: false
 
   /pirates@4.0.6:
     resolution: {integrity: sha512-saLsH7WeYYPiD25LDuLRRY/i+6HaPYr6G1OUlN39otzkSTxKnubR9RTxS3/Kk50s1g2JTgFwWQDQyplC5/SHZg==}
@@ -2872,29 +2879,29 @@ packages:
       pathe: 1.1.1
     dev: true
 
-  /postcss-import@15.1.0(postcss@8.4.24):
+  /postcss-import@15.1.0(postcss@8.4.35):
     resolution: {integrity: sha512-hpr+J05B2FVYUAXHeK1YyI267J/dDDhMU6B6civm8hSY1jYJnBXxzKDKDswzJmtLHryrjhnDjqqp/49t8FALew==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       postcss: ^8.0.0
     dependencies:
-      postcss: 8.4.24
+      postcss: 8.4.35
       postcss-value-parser: 4.2.0
       read-cache: 1.0.0
       resolve: 1.22.2
     dev: true
 
-  /postcss-js@4.0.1(postcss@8.4.24):
+  /postcss-js@4.0.1(postcss@8.4.35):
     resolution: {integrity: sha512-dDLF8pEO191hJMtlHFPRa8xsizHaM82MLfNkUHdUtVEV3tgTp5oj+8qbEqYM57SLfc74KSbw//4SeJma2LRVIw==}
     engines: {node: ^12 || ^14 || >= 16}
     peerDependencies:
       postcss: ^8.4.21
     dependencies:
       camelcase-css: 2.0.1
-      postcss: 8.4.24
+      postcss: 8.4.35
     dev: true
 
-  /postcss-load-config@4.0.1(postcss@8.4.24):
+  /postcss-load-config@4.0.1(postcss@8.4.35):
     resolution: {integrity: sha512-vEJIc8RdiBRu3oRAI0ymerOn+7rPuMvRXslTvZUKZonDHFIczxztIyJ1urxM1x9JXEikvpWWTUUqal5j/8QgvA==}
     engines: {node: '>= 14'}
     peerDependencies:
@@ -2907,17 +2914,17 @@ packages:
         optional: true
     dependencies:
       lilconfig: 2.1.0
-      postcss: 8.4.24
+      postcss: 8.4.35
       yaml: 2.3.1
     dev: true
 
-  /postcss-nested@6.0.1(postcss@8.4.24):
+  /postcss-nested@6.0.1(postcss@8.4.35):
     resolution: {integrity: sha512-mEp4xPMi5bSWiMbsgoPfcP74lsWLHkQbZc3sY+jWYd65CUwXrUaTp0fmNpa01ZcETKlIgUdFN/MpS2xZtqL9dQ==}
     engines: {node: '>=12.0'}
     peerDependencies:
       postcss: ^8.2.14
     dependencies:
-      postcss: 8.4.24
+      postcss: 8.4.35
       postcss-selector-parser: 6.0.13
     dev: true
 
@@ -2933,20 +2940,11 @@ packages:
     resolution: {integrity: sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==}
     dev: true
 
-  /postcss@8.4.21:
-    resolution: {integrity: sha512-tP7u/Sn/dVxK2NnruI4H9BG+x+Wxz6oeZ1cJ8P6G/PZY0IKk4k/63TDsQf2kQq3+qoJeLm2kIBUNlZe3zgb4Zg==}
+  /postcss@8.4.35:
+    resolution: {integrity: sha512-u5U8qYpBCpN13BsiEB0CbR1Hhh4Gc0zLFuedrHJKMctHCHAGrMdG0PRM/KErzAL3CU6/eckEtmHNB3x6e3c0vA==}
     engines: {node: ^10 || ^12 || >=14}
     dependencies:
-      nanoid: 3.3.4
-      picocolors: 1.0.0
-      source-map-js: 1.0.2
-    dev: true
-
-  /postcss@8.4.24:
-    resolution: {integrity: sha512-M0RzbcI0sO/XJNucsGjvWU9ERWxb/ytp1w6dKtxTKgixdtQDq4rmx/g8W1hnaheq9jgwL/oyEdH5Bc4WwJKMqg==}
-    engines: {node: ^10 || ^12 || >=14}
-    dependencies:
-      nanoid: 3.3.6
+      nanoid: 3.3.7
       picocolors: 1.0.0
       source-map-js: 1.0.2
 
@@ -3431,11 +3429,11 @@ packages:
       normalize-path: 3.0.0
       object-hash: 3.0.0
       picocolors: 1.0.0
-      postcss: 8.4.24
-      postcss-import: 15.1.0(postcss@8.4.24)
-      postcss-js: 4.0.1(postcss@8.4.24)
-      postcss-load-config: 4.0.1(postcss@8.4.24)
-      postcss-nested: 6.0.1(postcss@8.4.24)
+      postcss: 8.4.35
+      postcss-import: 15.1.0(postcss@8.4.35)
+      postcss-js: 4.0.1(postcss@8.4.35)
+      postcss-load-config: 4.0.1(postcss@8.4.35)
+      postcss-nested: 6.0.1(postcss@8.4.35)
       postcss-selector-parser: 6.0.13
       postcss-value-parser: 4.2.0
       resolve: 1.22.2
@@ -4060,7 +4058,7 @@ packages:
       '@vue/shared': 3.2.45
       estree-walker: 2.0.2
       magic-string: 0.25.9
-      postcss: 8.4.24
+      postcss: 8.4.35
       source-map: 0.6.1
 
   registry.npmmirror.com/@vue/compiler-ssr@3.2.45:
@@ -4299,6 +4297,7 @@ packages:
     name: iconv-lite
     version: 0.6.3
     engines: {node: '>=0.10.0'}
+    requiresBuild: true
     dependencies:
       safer-buffer: registry.npmmirror.com/safer-buffer@2.1.2
     dev: true
@@ -4412,6 +4411,7 @@ packages:
     resolution: {integrity: sha512-yPw4Sng1gWghHQWj0B3ZggWUm4qVbPwPFcRG8KyxiU7J2OHFSoEHKS+EZ3fv5l1t9CyCiop6l/ZYeWbrgoQejw==, registry: https://registry.npmjs.org/, tarball: https://registry.npmmirror.com/prr/-/prr-1.0.1.tgz}
     name: prr
     version: 1.0.1
+    requiresBuild: true
     dev: true
     optional: true
 
@@ -4453,6 +4453,7 @@ packages:
     resolution: {integrity: sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw==, registry: https://registry.npmjs.org/, tarball: https://registry.npmmirror.com/sax/-/sax-1.2.4.tgz}
     name: sax
     version: 1.2.4
+    requiresBuild: true
     dev: true
     optional: true
 
@@ -4498,7 +4499,7 @@ packages:
     engines: {node: '>=4.2.0'}
     hasBin: true
 
-  registry.npmmirror.com/vitawind@2.2.4(autoprefixer@10.4.14)(postcss@8.4.21)(tailwindcss@3.3.2):
+  registry.npmmirror.com/vitawind@2.2.4(autoprefixer@10.4.14)(postcss@8.4.35)(tailwindcss@3.3.2):
     resolution: {integrity: sha512-XHEavMf9OjLfR8ahNjfyEoO8SEzRqfbCBf81MBCQ6HhU2ra1tBiJKTqDuOgGOsMugOeu/ap1A4rARUjv4E1q+Q==, registry: https://registry.npmjs.org/, tarball: https://registry.npmmirror.com/vitawind/-/vitawind-2.2.4.tgz}
     id: registry.npmmirror.com/vitawind/2.2.4
     name: vitawind
@@ -4510,8 +4511,8 @@ packages:
       postcss: ^8.4.8
       tailwindcss: ^3.0.23
     dependencies:
-      autoprefixer: 10.4.14(postcss@8.4.21)
-      postcss: 8.4.21
+      autoprefixer: 10.4.14(postcss@8.4.35)
+      postcss: 8.4.35
       tailwindcss: 3.3.2
     dev: true
 
@@ -4546,7 +4547,7 @@ packages:
       '@types/node': 16.11.42
       esbuild: registry.npmmirror.com/esbuild@0.15.18
       less: registry.npmmirror.com/less@4.1.3
-      postcss: 8.4.21
+      postcss: 8.4.35
       resolve: registry.npmmirror.com/resolve@1.22.1
       rollup: registry.npmmirror.com/rollup@2.79.1
     optionalDependencies:
